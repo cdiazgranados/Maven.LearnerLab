@@ -1,26 +1,26 @@
 package io.zipcoder.interfaces;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-public class People<T extends Person> implements Iterable<T> {
-    List<T> personList;
-
+public abstract class People<E extends Person> implements Iterable<E> {
+    List<E> personList;
 
     public People() {
         personList = new ArrayList<>();
     }
 
-    public People(List<T> personList) {
+    public People(List<E> personList) {
         this.personList = personList;
     }
 
-    public void add(T person) {
+    public void add(E person) {
         personList.add(person);
     }
 
-    public T findById(Long id) {
+    public E findById(Long id) {
         for (int i = 0; i < personList.size(); i++) {
             if(personList.get(i).getId() == id) {
                 return personList.get(i);
@@ -29,16 +29,14 @@ public class People<T extends Person> implements Iterable<T> {
         return null;
     }
 
-    public boolean contains(T person) {
+    public boolean contains(E person) {
         if (personList.contains(person)) {
             return true;
         }
         return false;
     }
 
-    
-    //todo: start here
-    public void remove(T person) {
+    public void remove(E person) {
         Long id = person.getId();
         for (int i = 0; i < personList.size(); i++) {
             if(personList.get(i).getId() == id) {
@@ -55,13 +53,17 @@ public class People<T extends Person> implements Iterable<T> {
         return personList.size();
     }
 
-    public Person[] toArray(Student[] students) {
-        return personList.toArray(new Person[0]);
+    public E[] toArray(Student[] students){
+        E[] arr = (E[]) Array.newInstance(personList.get(0).getClass(), personList.size());
+        for (int i = 0; i < personList.size(); i++) {
+            arr[i] = personList.get(i);
+        }
+        return arr;
     }
 
 
     @Override
-    public Iterator<T> iterator() {
+    public Iterator<E> iterator() {
         return personList.stream().iterator();
     }
 

@@ -8,6 +8,7 @@ public final class Instructors extends People<Instructor> {
         this.add(new Instructor(2L, "Kris"));
     }
 
+
     public static Instructors getInstance() {
         return INSTRUCTORS;
     }

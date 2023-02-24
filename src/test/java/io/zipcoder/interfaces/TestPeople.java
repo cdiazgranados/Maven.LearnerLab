@@ -6,7 +6,12 @@ import org.junit.Test;
 public class TestPeople {
     @Test
     public void testAdd() {
-        People people = new People();
+        People people = new People() {
+            @Override
+            public Person[] toArray(Student[] students) {
+                return new Person[0];
+            }
+        };
         Person person = new Person(123L, "Carolina");
         people.add(person);
         Integer expected = 1;
@@ -16,7 +21,12 @@ public class TestPeople {
 
     @Test
     public void testContains() {
-        People people = new People();
+        People people = new People() {
+            @Override
+            public Person[] toArray(Student[] students) {
+                return new Person[0];
+            }
+        };
         Person person = new Person(123L, "Carolina");
         people.add(person);
         Assert.assertTrue(people.contains(person));
@@ -24,7 +34,12 @@ public class TestPeople {
 
     @Test
     public void testFindById() {
-        People people = new People();
+        People people = new People() {
+            @Override
+            public Person[] toArray(Student[] students) {
+                return new Person[0];
+            }
+        };
         Person person = new Person(123L, "Carolina");
         people.add(person);
         Person actual = people.findById(123L);
@@ -33,7 +48,12 @@ public class TestPeople {
 
     @Test
     public void testRemove() {
-        People people = new People();
+        People people = new People() {
+            @Override
+            public Person[] toArray(Student[] students) {
+                return new Person[0];
+            }
+        };
         Person person = new Person(123L, "Carolina");
         people.add(person);
         people.remove(person);
@@ -42,7 +62,12 @@ public class TestPeople {
 
     @Test
     public void testRemoveAll( ) {
-        People people = new People();
+        People people = new People() {
+            @Override
+            public Person[] toArray(Student[] students) {
+                return new Person[0];
+            }
+        };
         Person person = new Person(123L, "Carolina");
         Person person2 = new Person(124L, "Nick");
         people.add(person);
@@ -55,7 +80,7 @@ public class TestPeople {
 
     @Test
     public void testToArray() {
-        People people = new People();
+        People people = new People(){};
         Person person = new Person(123L, "Carolina");
         Person person2 = new Person(124L, "Nick");
         people.add(person);
